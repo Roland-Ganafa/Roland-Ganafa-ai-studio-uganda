@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Studio Uganda - Advanced AI Research</title>
+    <meta name="description" content="Building localized AI models for Uganda. High-performance, ethical, and accessible artificial intelligence." />
+    <script type="module" crossorigin src="/assets/main-e2H5fyXk.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/main-UiHBe3mC.css">
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="nav-container">
+        <a href="/" class="nav-logo">AI Studio Uganda</a>
+        <div class="nav-links">
+          <a href="/playground/" class="nav-link">Playground</a>
+          <a href="/docs/" class="nav-link">Developers</a>
+          <a href="/research-and-safety/" class="nav-link">Research</a>
+          <a href="/impact/" class="nav-link">Impact</a>
+        </div>
+      </div>
+    </nav>
+
+    <main class="container">
+      <!-- Hero Section -->
+      <section class="full-screen-section animate-on-scroll">
+        <h1>Building the Intelligence<br />Layer for Uganda.</h1>
+        <p>Developing state-of-the-art AI models grounded in local context, language, and culture.</p>
+        
+        <div class="btn-group">
+          <a href="/playground/" class="btn btn-primary">Try the Playground</a>
+          <a href="/docs/" class="btn btn-secondary">Read the Docs</a>
+        </div>
+      </section>
+
+      <!-- Animated Flow Section -->
+      <section class="full-screen-section animate-on-scroll">
+          <div class="flow-container" style="width: 100%; max-width: 800px; margin: 0 auto; text-align: center;">
+              <h3>Core Architecture</h3>
+              <svg viewBox="0 0 800 250" class="flow-chart" style="width: 100%; overflow: visible;">
+                  <defs>
+                      <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+                          <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                          <feMerge>
+                              <feMergeNode in="coloredBlur"/>
+                              <feMergeNode in="SourceGraphic"/>
+                          </feMerge>
+                      </filter>
+                  </defs>
+                  
+                  <!-- Connection Lines -->
+                  <path d="M 140 100 L 360 100" stroke="#333" stroke-width="2" />
+                  <path d="M 440 100 L 660 100" stroke="#333" stroke-width="2" />
+
+                  <!-- Nodes -->
+                  <g class="flow-node" transform="translate(100, 100)">
+                      <circle r="40" stroke="#00FFFF" stroke-width="2" fill="#1A1A1A" filter="url(#glow)" />
+                      <text y="5" fill="#FFF" text-anchor="middle" font-size="14" font-weight="600">Raw Data</text>
+                      <text y="70" fill="#999" text-anchor="middle" font-size="12">Digitization</text>
+                  </g>
+
+                  <g class="flow-node" transform="translate(400, 100)">
+                      <rect x="-60" y="-40" width="120" height="80" rx="8" stroke="#00FFFF" stroke-width="2" fill="#1A1A1A" filter="url(#glow)" />
+                      <text y="5" fill="#FFF" text-anchor="middle" font-size="14" font-weight="600">Crane Mode</text>
+                      <text y="70" fill="#999" text-anchor="middle" font-size="12">Training</text>
+                  </g>
+
+                  <g class="flow-node" transform="translate(700, 100)">
+                      <circle r="40" stroke="#00FFFF" stroke-width="2" fill="#1A1A1A" filter="url(#glow)" />
+                      <text y="5" fill="#FFF" text-anchor="middle" font-size="14" font-weight="600">Localized AI</text>
+                      <text y="70" fill="#999" text-anchor="middle" font-size="12">Output</text>
+                  </g>
+
+                  <!-- Animated Particles -->
+                  <circle r="4" fill="#00FFFF" filter="url(#glow)">
+                      <animateMotion dur="2s" repeatCount="indefinite" path="M 140 100 L 340 100" keyPoints="0;1" keyTimes="0;1" calcMode="linear" />
+                      <animate attributeName="opacity" values="0;1;0" dur="2s" repeatCount="indefinite" />
+                  </circle>
+
+                  <circle r="4" fill="#00FFFF" filter="url(#glow)">
+                      <animateMotion dur="2s" begin="1s" repeatCount="indefinite" path="M 460 100 L 660 100" keyPoints="0;1" keyTimes="0;1" calcMode="linear" />
+                      <animate attributeName="opacity" values="0;1;0" dur="2s" begin="1s" repeatCount="indefinite" />
+                  </circle>
+              </svg>
+          </div>
+      </section>
+
+    </main>
+
+    <footer style="border-top: 1px solid var(--border-subtle); padding: var(--spacing-lg) 0; margin-top: var(--spacing-xl); text-align: center; color: var(--text-secondary);">
+        <p>&copy; 2025 AI Studio Uganda. All rights reserved.</p>
+    </footer>
+
+  </body>
+</html>

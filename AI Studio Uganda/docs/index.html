@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Developers - AI Studio Uganda</title>
+    <link rel="stylesheet" href="/src/styles/global.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-twilight.min.css">
+    <style>
+        .docs-container {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            gap: var(--spacing-xl);
+            padding-top: var(--spacing-xl);
+            align-items: start;
+        }
+
+        .docs-sidebar {
+            position: sticky;
+            top: 100px;
+            border-right: 1px solid var(--border-subtle);
+            padding-right: var(--spacing-md);
+        }
+
+        .docs-nav-link {
+            display: block;
+            color: var(--text-secondary);
+            padding: 8px 0;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .docs-nav-link:hover,
+        .docs-nav-link.active {
+            color: var(--accent-cyan);
+            padding-left: 4px;
+            /* subtle shift */
+        }
+
+        .docs-content {
+            max-width: 800px;
+            padding-bottom: 100px;
+        }
+
+        .code-block-wrapper {
+            background: #1e1e1e;
+            border-radius: 8px;
+            margin: var(--spacing-md) 0;
+            overflow: hidden;
+            border: 1px solid var(--border-subtle);
+        }
+
+        .code-header {
+            background: #2d2d2d;
+            padding: 8px 16px;
+            font-size: 0.8rem;
+            color: #ccc;
+            border-bottom: 1px solid #333;
+        }
+
+        pre {
+            margin: 0 !important;
+            padding: 16px !important;
+            background: transparent !important;
+        }
+
+        .endpoint-badge {
+            display: inline-block;
+            background: rgba(0, 255, 255, 0.1);
+            color: var(--accent-cyan);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            margin-right: 8px;
+        }
+
+        h2 {
+            border-bottom: 1px solid var(--border-subtle);
+            padding-bottom: var(--spacing-sm);
+            margin-top: var(--spacing-xl);
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">
+                <img src="/images/logo.png" alt="AI Studio Uganda Logo" class="nav-logo-img">
+                AI Studio Uganda
+            </a>
+            <div class="nav-links">
+                <a href="/playground/" class="nav-link">Playground</a>
+                <a href="/research-and-safety/" class="nav-link">Research</a>
+                <a href="/docs/" class="nav-link active">Developers</a>
+                <a href="/impact/" class="nav-link">Impact</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="docs-container">
+            <aside class="docs-sidebar">
+                <h4 style="color:var(--text-primary); margin-bottom:16px;">Documentation</h4>
+                <a href="#intro" class="docs-nav-link">Introduction</a>
+                <a href="#getting-started" class="docs-nav-link">Getting Started</a>
+                <a href="#auth" class="docs-nav-link">Authentication</a>
+                <a href="#text-generation" class="docs-nav-link">Text Generation</a>
+                <a href="#translation" class="docs-nav-link">Translation</a>
+                <a href="#embeddings" class="docs-nav-link">Embeddings</a>
+                <a href="#production" class="docs-nav-link">Production Guide</a>
+            </aside>
+
+            <section class="docs-content">
+                <div id="intro">
+                    <h1>Sovereign AI for Developers</h1>
+                    <p class="lead">Integrate Crane models into your applications using simple, secure APIs. Designed
+                        for low latency, local language intelligence, and sovereign deployment.</p>
+                </div>
+
+                <div id="getting-started">
+                    <h2>Getting Started</h2>
+                    <ol style="color: var(--text-secondary); line-height: 1.8; margin-left: 20px;">
+                        <li>Create an account on the platform</li>
+                        <li>Generate an API key in your dashboard</li>
+                        <li>Choose a Crane model (e.g., <code>crane-v1.0-instruct</code>)</li>
+                        <li>Copy the integration code below</li>
+                    </ol>
+                </div>
+
+                <div id="auth">
+                    <h2>Authentication</h2>
+                    <p>All requests use Bearer token authentication.</p>
+                    <div class="code-block-wrapper">
+                        <div class="code-header">HTTP Header</div>
+                        <pre><code class="language-http">Authorization: Bearer YOUR_CRANE_API_KEY</code></pre>
+                    </div>
+                </div>
+
+                <div id="text-generation">
+                    <h2>Quickstart – Text Generation</h2>
+
+                    <h3>cURL</h3>
+                    <div class="code-block-wrapper">
+                        <pre><code class="language-bash">curl https://api.aistudio.ug/v1/crane/generate \
+  -H "Authorization: Bearer $CRANE_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "crane-v1.0",
+    "input": "Translate this into Luganda: Hello friend",
+    "max_tokens": 128
+  }'</code></pre>
+                    </div>
+
+                    <h3>JavaScript</h3>
+                    <div class="code-block-wrapper">
+                        <pre><code class="language-js">const res = await fetch("https://api.aistudio.ug/v1/crane/generate", {
+  method: "POST",
+  headers: {
+    "Authorization": `Bearer ${process.env.CRANE_API_KEY}`,
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    model: "crane-v1.0",
+    input: "Summarize this text"
+  })
+});
+
+const data = await res.json();
+console.log(data.output);</code></pre>
+                    </div>
+
+                    <h3>Python</h3>
+                    <div class="code-block-wrapper">
+                        <pre><code class="language-python">import requests
+
+url = "https://api.aistudio.ug/v1/crane/generate"
+headers = {
+  "Authorization": f"Bearer {API_KEY}",
+  "Content-Type": "application/json"
+}
+
+payload = {
+  "model": "crane-v1.0",
+  "input": "Hello world in Runyankole"
+}
+
+response = requests.post(url, json=payload, headers=headers)
+print(response.json()["output"])</code></pre>
+                    </div>
+                </div>
+
+                <div id="translation">
+                    <h2>Translation Endpoint</h2>
+                    <p><span class="endpoint-badge">POST</span> <code>/v1/crane/translate</code></p>
+                    <p>Optimized for East African languages. Required fields:</p>
+                    <ul style="color:var(--text-secondary); margin-left:20px;">
+                        <li><code>source_lang</code> (e.g., "en")</li>
+                        <li><code>target_lang</code> (e.g., "lg", "sw")</li>
+                        <li><code>text</code></li>
+                    </ul>
+                </div>
+
+                <div id="embeddings">
+                    <h2>Embeddings</h2>
+                    <p><span class="endpoint-badge">POST</span> <code>/v1/crane/embed</code></p>
+                    <p>Use embeddings for semantic search, clustering, and retrieval augmented generation (RAG).</p>
+                </div>
+
+                <div id="production">
+                    <h2>Production Guidance</h2>
+                    <p><strong>Timeouts:</strong> We recommend a timeout of 30s for standard generation and 60s for
+                        long-context tasks.</p>
+                    <p><strong>Retries:</strong> Implement exponential backoff for 5xx errors.</p>
+                </div>
+
+            </section>
+        </div>
+    </main>
+
+    <footer class="page-footer">
+        <p>&copy; 2025 AI Studio Uganda. Sovereign AI for the Future.</p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
+</body>
+
+</html>

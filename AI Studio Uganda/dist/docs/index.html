@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Developers - AI Studio Uganda</title>
+    <style>
+        .docs-layout {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: var(--spacing-lg);
+            padding-top: var(--spacing-md);
+        }
+
+        .docs-nav {
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+            border-right: 1px solid var(--border-subtle);
+            padding-right: var(--spacing-sm);
+        }
+
+        .docs-nav a {
+            display: block;
+            padding: 8px 0;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .docs-nav a:hover,
+        .docs-nav a.active-section {
+            color: var(--accent-cyan);
+            padding-left: 4px;
+            /* subtle shift */
+        }
+
+        .code-block {
+            background: #111;
+            padding: var(--spacing-md);
+            border-radius: 8px;
+            border: 1px solid #333;
+            overflow-x: auto;
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            margin: var(--spacing-sm) 0;
+            position: relative;
+        }
+
+        .sandbox-controls {
+            background: #222;
+            padding: var(--spacing-sm);
+            border-radius: 8px 8px 0 0;
+            border: 1px solid #333;
+            border-bottom: none;
+            display: flex;
+            gap: var(--spacing-sm);
+            align-items: center;
+        }
+
+        .sandbox-input {
+            background: #000;
+            border: 1px solid #444;
+            color: #fff;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            width: 200px;
+        }
+    </style>
+  <script type="module" crossorigin src="/assets/main-e2H5fyXk.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/main-UiHBe3mC.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">AI Studio Uganda</a>
+            <div class="nav-links">
+                <a href="/playground/" class="nav-link">Playground</a>
+                <a href="/docs/" class="nav-link">Developers</a>
+                <a href="/research-and-safety/" class="nav-link">Research</a>
+                <a href="/impact/" class="nav-link">Impact</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="docs-layout">
+            <aside class="docs-nav">
+                <h3>Documentation</h3>
+                <a href="#" class="active-section">Quickstart</a>
+                <a href="#">Authentication</a>
+                <a href="#">Models</a>
+                <a href="#">API Reference</a>
+                <a href="#">SDKs</a>
+            </aside>
+
+            <article class="content animate-on-scroll">
+                <h1>Quickstart</h1>
+                <p>Get started with the Crane API in minutes. Integrate localized Ugandan language models into your
+                    applications.</p>
+
+                <h2>Integration Architecture</h2>
+                <div style="margin: var(--spacing-md) 0; padding: 20px; background: #111; border-radius: 8px;">
+                    <svg viewBox="0 0 800 150" style="width: 100%;">
+                        <!-- Simple Flow: Client -> API -> Model -> Client -->
+                        <defs>
+                            <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"
+                                markerUnits="strokeWidth">
+                                <path d="M0,0 L0,6 L9,3 z" fill="#00FFFF" />
+                            </marker>
+                        </defs>
+
+                        <g transform="translate(50, 75)">
+                            <rect x="-40" y="-30" width="80" height="60" rx="4" stroke="#666" fill="none" />
+                            <text y="5" fill="#FFF" text-anchor="middle">Your App</text>
+                        </g>
+
+                        <path d="M 100 75 L 300 75" stroke="#333" stroke-width="2" marker-end="url(#arrow)" />
+                        <circle r="3" fill="#00FFFF">
+                            <animateMotion dur="1.5s" repeatCount="indefinite" path="M 100 75 L 300 75" />
+                        </circle>
+
+                        <g transform="translate(350, 75)">
+                            <rect x="-40" y="-30" width="80" height="60" rx="4" stroke="#00FFFF" fill="none" />
+                            <text y="5" fill="#FFF" text-anchor="middle">API GW</text>
+                        </g>
+
+                        <path d="M 400 75 L 600 75" stroke="#333" stroke-width="2" marker-end="url(#arrow)" />
+
+                        <g transform="translate(650, 75)">
+                            <circle r="35" stroke="#00FFFF" fill="none" />
+                            <text y="5" fill="#FFF" text-anchor="middle">Crane</text>
+                        </g>
+                    </svg>
+                </div>
+
+                <h2>Live Sandbox</h2>
+                <p>Enter your API key below to update the snippet instantly. The code uses <code>curl</code> for
+                    universality.</p>
+
+                <div class="sandbox-wrapper">
+                    <div class="sandbox-controls">
+                        <label style="font-size: 0.85rem; color:#888;">API Key:</label>
+                        <input type="text" id="api-key-input" class="sandbox-input" placeholder="sk-..."
+                            value="sk-placeholder-key">
+                        <span style="font-size: 0.8rem; color: #444;">(Not saved, local only)</span>
+                    </div>
+                    <pre class="code-block"><code id="code-snippet">
+curl https://api.aistudio.ug/v1/completions \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer <span id="key-display" style="color:var(--accent-cyan);">sk-placeholder-key</span>" \
+  -d '{
+    "model": "crane-v1",
+    "prompt": "Translate to Luganda: Hello world",
+    "max_tokens": 64
+  }'
+                  </code></pre>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <script>
+        // Simple Sandbox Logic
+        const input = document.getElementById('api-key-input');
+        const display = document.getElementById('key-display');
+
+        input.addEventListener('input', (e) => {
+            const val = e.target.value || 'sk-placeholder-key';
+            display.textContent = val;
+        });
+    </script>
+</body>
+
+</html>

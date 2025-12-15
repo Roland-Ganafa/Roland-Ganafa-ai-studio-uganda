@@ -1,0 +1,139 @@
+openapi: 3.1.0
+info:
+  title: Crane AI Playground API
+  version: 1.0.0
+  description: API for interacting with Crane AI models, use cases, architecture info, and trust data.
+
+servers:
+  - url: https://api.crane.ai
+    description: Production server
+  - url: https://staging.api.crane.ai
+    description: Staging server
+
+paths:
+  /crane/run:
+    post:
+      summary: Run a model with given input
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                model_id:
+                  type: string
+                  description: ID of the model to run
+                input:
+                  type: string
+                  description: Input text or data for the model
+                options:
+                  type: object
+                  description: Optional run parameters
+      responses:
+        '200':
+          description: Model output
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  output:
+                    type: string
+                  metadata:
+                    type: object
+        '400':
+          description: Invalid request
+        '500':
+          description: Internal server error
+
+  /crane/models:
+    get:
+      summary: Get list of available models
+      responses:
+        '200':
+          description: List of models
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    name:
+                      type: string
+                    description:
+                      type: string
+        '500':
+          description: Internal server error
+
+  /crane/use-cases:
+    get:
+      summary: List predefined use cases
+      responses:
+        '200':
+          description: Use cases available for testing
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    category:
+                      type: string
+                    description:
+                      type: string
+                    prompt:
+                      type: string
+        '500':
+          description: Internal server error
+
+  /crane/architecture:
+    get:
+      summary: Get architecture details
+      responses:
+        '200':
+          description: Information about the Crane architecture
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  layers:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                        type:
+                          type: string
+                        description:
+                          type: string
+        '500':
+          description: Internal server error
+
+  /crane/trust:
+    get:
+      summary: Get trust and governance information
+      responses:
+        '200':
+          description: Trust and governance data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data_locality:
+                    type: string
+                  hosting_region:
+                    type: string
+                  governance:
+                    type: string
+        '500':
+          description: Internal server error

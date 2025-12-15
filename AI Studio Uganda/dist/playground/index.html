@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Playground - AI Studio Uganda</title>
+    <style>
+        .playground-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: var(--spacing-md);
+            height: calc(100vh - 120px);
+            margin-top: var(--spacing-md);
+        }
+
+        .panel {
+            background: var(--bg-panel);
+            border: 1px solid var(--border-subtle);
+            border-radius: 8px;
+            padding: var(--spacing-md);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .challenge-header {
+            border-bottom: 1px solid var(--border-subtle);
+            padding-bottom: var(--spacing-sm);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .progress-track {
+            display: flex;
+            gap: 4px;
+            margin: var(--spacing-sm) 0;
+        }
+
+        .progress-step {
+            height: 4px;
+            flex: 1;
+            background: #333;
+            border-radius: 2px;
+        }
+
+        .progress-step.active {
+            background: var(--accent-cyan);
+            box-shadow: 0 0 8px rgba(0, 255, 255, 0.4);
+        }
+
+        .progress-step.completed {
+            background: var(--accent-cyan);
+            opacity: 0.5;
+        }
+
+        .leaderboard-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #333;
+            font-size: 0.9rem;
+        }
+
+        .model-input {
+            background: #111;
+            border: 1px solid #333;
+            color: #fff;
+            padding: var(--spacing-sm);
+            border-radius: 4px;
+            width: 100%;
+            font-family: var(--font-mono);
+            min-height: 100px;
+            resize: vertical;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .model-output {
+            background: #000;
+            border: 1px solid var(--accent-cyan);
+            color: var(--accent-cyan);
+            padding: var(--spacing-sm);
+            border-radius: 4px;
+            font-family: var(--font-mono);
+            flex-grow: 1;
+        }
+    </style>
+  <script type="module" crossorigin src="/assets/playground-XpxpbGyp.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/main-e2H5fyXk.js">
+  <link rel="stylesheet" crossorigin href="/assets/main-UiHBe3mC.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">AI Studio Uganda</a>
+            <div class="nav-links">
+                <a href="/playground/" class="nav-link">Playground</a>
+                <a href="/docs/" class="nav-link">Developers</a>
+                <a href="/research-and-safety/" class="nav-link">Research</a>
+                <a href="/impact/" class="nav-link">Impact</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="playground-grid animate-on-scroll">
+            <!-- Sidebar: Challenges & Stats -->
+            <aside class="panel">
+                <div class="challenge-header">
+                    <h3>Challenge Mode</h3>
+                    <div class="progress-track">
+                        <div class="progress-step completed"></div>
+                        <div class="progress-step active"></div>
+                        <div class="progress-step"></div>
+                        <div class="progress-step"></div>
+                    </div>
+                    <p style="font-size: 0.9rem; margin-bottom: 0;">Level 2: Luganda Translation</p>
+                </div>
+
+                <div style="flex-grow: 1;">
+                    <h4>Mission</h4>
+                    <p style="font-size: 0.9rem;">Translate the following greeting into formal Luganda to unlock the
+                        'Linguist' badge.</p>
+
+                    <div
+                        style="background:rgba(0,255,255,0.05); padding: 12px; border-radius: 4px; border-left: 2px solid var(--accent-cyan); margin-bottom: var(--spacing-md);">
+                        <strong>Input:</strong> "Good morning, honored guest."
+                    </div>
+                </div>
+
+                <div class="leaderboard">
+                    <h4 style="margin-bottom: 8px;">Top Contributors</h4>
+                    <div class="leaderboard-item">
+                        <span>1. Sarah.K</span>
+                        <span style="color:var(--accent-cyan)">9,840 pts</span>
+                    </div>
+                    <div class="leaderboard-item">
+                        <span>2. David.O</span>
+                        <span style="color:var(--accent-cyan)">8,200 pts</span>
+                    </div>
+                    <div class="leaderboard-item">
+                        <span>3. You</span>
+                        <span style="color:#666">1,200 pts</span>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Main: Interaction Area -->
+            <section class="panel">
+                <div
+                    style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-sm);">
+                    <h3>Crane-v1.0 (Instruct)</h3>
+                    <span
+                        style="font-size: 0.8rem; color: #666; border: 1px solid #333; padding: 2px 8px; border-radius: 12px;">Latency:
+                        45ms</span>
+                </div>
+
+                <textarea class="model-input" placeholder="Enter your prompt here..."></textarea>
+
+                <div style="display: flex; justify-content: flex-end; margin-bottom: var(--spacing-sm);">
+                    <button class="btn btn-primary">Run Model</button>
+                </div>
+
+                <h4>Output</h4>
+                <div class="model-output">
+                    // Model response will appear here...
+                </div>
+            </section>
+        </div>
+    </main>
+</body>
+
+</html>

@@ -1,0 +1,6 @@
+import"./main-e2H5fyXk.js";document.addEventListener("DOMContentLoaded",()=>{const n=document.querySelector(".btn-primary"),c=document.querySelector(".model-input"),s=document.querySelector(".model-output"),i=document.querySelectorAll(".progress-step");n.addEventListener("click",()=>{const e=c.value.trim();e&&(s.innerHTML='<span style="color:#666">Generating response... <span class="blink">|</span></span>',n.disabled=!0,n.style.opacity="0.7",setTimeout(()=>{const t=a(e);u(t,s),n.disabled=!1,n.style.opacity="1",e.toLowerCase().includes("good morning")&&e.toLowerCase().includes("guest")&&d()},1500))});function a(e){return e.toLowerCase().includes("good morning")?"Wassuze otya, omugenyi omulungi. (Good morning, honored guest).":`[Crane-v1] Processed input: "${e}". 
+
+This is a simulated response for the playground. In a live environment, this would call the inference API.`}function u(e,t){t.innerHTML="";let o=0;const p=20;function r(){o<e.length&&(t.innerHTML+=e.charAt(o),o++,setTimeout(r,p))}r()}function d(){i[2]&&(i[2].classList.add("active"),alert("Challenge Complete: 'Linguist' Badge Unlocked!"))}});const l=document.createElement("style");l.innerHTML=`
+@keyframes blink { 50% { opacity: 0; } }
+.blink { animation: blink 1s step-end infinite; }
+`;document.head.appendChild(l);

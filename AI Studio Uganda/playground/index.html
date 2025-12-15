@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Playground - AI Studio Uganda</title>
+    <link rel="stylesheet" href="/src/styles/global.css">
+    <script type="module" src="/src/js/playground-new.js"></script>
+    <style>
+        /* Specific Playground overrides */
+        body {
+            overflow: hidden;
+            /* Prevent scrolling on the main page for the app-like feel */
+        }
+
+        .container {
+            max-width: 100%;
+            /* Use full width */
+            padding: 0;
+            height: calc(100vh - var(--nav-height));
+        }
+
+        .playground-grid {
+            display: grid;
+            grid-template-columns: 260px 1fr 400px;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .panel {
+            background: var(--bg-panel);
+            border-right: 1px solid var(--border-subtle);
+            display: flex;
+            flex-direction: column;
+            padding: var(--spacing-md);
+            overflow-y: auto;
+        }
+
+        .panel:last-child {
+            border-right: none;
+            background: #0d0d0d;
+            /* Slightly darker for code/output */
+        }
+
+        .panel-header {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-md);
+            font-weight: 600;
+        }
+
+        /* Form Controls */
+        .form-group {
+            margin-bottom: var(--spacing-md);
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+        }
+
+        .form-select,
+        .form-input {
+            width: 100%;
+            padding: 10px;
+            background: #1a1a1a;
+            border: 1px solid var(--border-subtle);
+            border-radius: 4px;
+            color: var(--text-primary);
+            font-family: var(--font-primary);
+            font-size: 0.95rem;
+        }
+
+        .form-select:focus,
+        .form-input:focus {
+            outline: none;
+            border-color: var(--accent-cyan);
+        }
+
+        /* Center Panel - Main Input */
+        .main-input-area {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+        }
+
+        .system-prompt {
+            min-height: 80px;
+            margin-bottom: var(--spacing-sm);
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            resize: vertical;
+        }
+
+        .user-prompt {
+            flex-grow: 1;
+            font-family: var(--font-mono);
+            font-size: 1rem;
+            padding: var(--spacing-md);
+            resize: none;
+            border: 1px solid var(--border-subtle);
+            background: #111;
+            border-radius: 4px;
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .run-bar {
+            padding-top: var(--spacing-sm);
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        /* Right Panel - Output & Code */
+        .output-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .output-display {
+            background: #000;
+            border: 1px solid var(--border-subtle);
+            border-radius: 4px;
+            padding: var(--spacing-md);
+            font-family: var(--font-mono);
+            font-size: 0.95rem;
+            color: var(--accent-cyan);
+            flex-grow: 1;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            min-height: 200px;
+        }
+
+        .metrics-bar {
+            display: flex;
+            gap: var(--spacing-md);
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-top: 8px;
+            font-family: var(--font-mono);
+        }
+
+        .metric-item strong {
+            color: var(--text-primary);
+        }
+
+        /* Code Export Tabs */
+        .code-export-section {
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            border-top: 1px solid var(--border-subtle);
+            padding-top: var(--spacing-md);
+        }
+
+        .tabs {
+            display: flex;
+            gap: 2px;
+            margin-bottom: 0;
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            padding: 8px 16px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+        }
+
+        .tab-btn.active {
+            color: var(--accent-cyan);
+            border-bottom-color: var(--accent-cyan);
+        }
+
+        .code-block {
+            background: #111;
+            padding: var(--spacing-sm);
+            border-radius: 0 4px 4px 4px;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: #d4d4d4;
+            flex-grow: 1;
+            overflow: auto;
+            margin: 0;
+            white-space: pre;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">
+                <img src="/images/logo.png" alt="AI Studio Uganda Logo" class="nav-logo-img">
+                AI Studio Uganda
+            </a>
+            <div class="nav-links">
+                <a href="/playground/" class="nav-link active">Playground</a>
+                <a href="/research-and-safety/" class="nav-link">Research</a>
+                <a href="/docs/" class="nav-link">Developers</a>
+                <a href="/impact/" class="nav-link">Impact</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="playground-grid">
+            <!-- Left Panel: Configuration -->
+            <aside class="panel">
+                <div class="panel-header">Configuration</div>
+
+                <div class="form-group">
+                    <label class="form-label">Model</label>
+                    <select class="form-select" id="modelSelect">
+                        <option value="crane-v1.0-instruct">Crane v1.0 Instruct</option>
+                        <option value="crane-v1.0-trans">Crane v1.0 Translation</option>
+                        <option value="crane-v1.0-embed">Crane v1.0 Embeddings</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Task</label>
+                    <select class="form-select" id="taskSelect">
+                        <option value="generate">Generate</option>
+                        <option value="translate">Translate</option>
+                        <option value="summarize">Summarize</option>
+                        <option value="qa">Q&A</option>
+                    </select>
+                </div>
+
+                <div class="form-group" id="langGroup">
+                    <label class="form-label">Target Language</label>
+                    <select class="form-select" id="langSelect">
+                        <option value="lg">Luganda</option>
+                        <option value="nyn">Runyankole</option>
+                        <option value="sw">Swahili</option>
+                        <option value="en">English</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Max Tokens</label>
+                    <input type="number" class="form-input" value="256" id="maxTokens">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Temperature</label>
+                    <input type="range" min="0" max="1" step="0.1" value="0.7" style="width:100%" id="tempRange">
+                </div>
+            </aside>
+
+            <!-- Center Panel: Prompt -->
+            <section class="panel">
+                <div class="panel-header">Input</div>
+
+                <div class="main-input-area">
+                    <textarea class="form-input system-prompt" placeholder="System Instructions (optional)"
+                        id="systemPrompt"></textarea>
+
+                    <textarea class="user-prompt" placeholder="Enter your prompt here..." id="userPrompt"></textarea>
+                </div>
+
+                <div class="run-bar">
+                    <button class="btn btn-primary" id="runBtn">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px">
+                            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                        </svg>
+                        Run Model
+                    </button>
+                </div>
+            </section>
+
+            <!-- Right Panel: Output & Code -->
+            <aside class="panel">
+                <div class="output-section">
+                    <div class="panel-header" style="justify-content: space-between; display: flex;">
+                        <span>Output</span>
+                        <span id="statusIndicator" style="font-size:0.7em; color:var(--text-secondary)">Ready</span>
+                    </div>
+
+                    <div class="output-display" id="outputArea">// Output will appear here...</div>
+
+                    <div class="metrics-bar">
+                        <span class="metric-item">Latency: <strong id="latencyVal">-</strong></span>
+                        <span class="metric-item">Tokens: <strong id="tokensVal">-</strong></span>
+                    </div>
+                </div>
+
+                <div class="code-export-section">
+                    <div class="panel-header">Code Integration</div>
+                    <div class="tabs" id="codeTabs">
+                        <button class="tab-btn active" data-lang="curl">cURL</button>
+                        <button class="tab-btn" data-lang="js">JavaScript</button>
+                        <button class="tab-btn" data-lang="python">Python</button>
+                    </div>
+                    <div class="code-block" id="codeBlock">
+                        curl https://api.aistudio.ug/v1/crane/generate \
+                        -H "Authorization: Bearer $CRANE_API_KEY" \
+                        -H "Content-Type: application/json" \
+                        -d '{
+                        "model": "crane-v1.0-instruct",
+                        "input": "...",
+                        "max_tokens": 256
+                        }'
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+</body>
+
+</html>

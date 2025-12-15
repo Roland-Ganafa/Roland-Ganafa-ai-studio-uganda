@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Impact & Initiatives - AI Studio Uganda</title>
+    <link rel="stylesheet" href="/src/styles/global.css">
+    <style>
+        .impact-hero {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        /* Metrics */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+            margin: var(--spacing-xl) 0;
+            text-align: center;
+        }
+
+        .metric-card {
+            background: var(--bg-panel);
+            padding: var(--spacing-lg);
+            border-radius: 16px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            border: 1px solid var(--border-subtle);
+        }
+
+        .metric-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent-cyan);
+        }
+
+        .metric-value {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--accent-cyan);
+            margin-bottom: var(--spacing-xs);
+            display: block;
+        }
+
+        .metric-label {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .metric-sub {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        /* Focus Areas */
+        .focus-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .focus-card {
+            background: var(--bg-panel);
+            border: 1px solid var(--border-subtle);
+            padding: var(--spacing-lg);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .focus-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .tag {
+            display: inline-block;
+            background: rgba(0, 255, 255, 0.1);
+            color: var(--accent-cyan);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .focus-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: var(--spacing-sm);
+            color: var(--text-primary);
+        }
+
+        .focus-card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Governance */
+        .governance-section {
+            text-align: center;
+            padding: var(--spacing-xl) 0;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .governance-list {
+            text-align: left;
+            display: inline-block;
+            margin: var(--spacing-md) 0;
+            color: var(--text-secondary);
+        }
+
+        .governance-list li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">
+                <img src="/images/logo.png" alt="AI Studio Uganda Logo" class="nav-logo-img">
+                AI Studio Uganda
+            </a>
+            <div class="nav-links">
+                <a href="/playground/" class="nav-link">Playground</a>
+                <a href="/research-and-safety/" class="nav-link">Research</a>
+                <a href="/docs/" class="nav-link">Developers</a>
+                <a href="/impact/" class="nav-link active">Impact</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="impact-hero">
+        <div class="container">
+            <h1>Our Focus & Initiatives</h1>
+            <p style="max-width: 700px; margin: 0 auto; font-size: 1.2rem;">We are developing AI solutions to support
+                agriculture, health, education, and governance in East Africa.</p>
+        </div>
+    </div>
+
+    <main class="container">
+
+        <!-- Metrics -->
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <span class="metric-value counter" data-target="50000" data-suffix="+">0</span>
+                <span class="metric-label">Farmers Supported</span>
+                <p class="metric-sub">Projected</p>
+            </div>
+            <div class="metric-card">
+                <span class="metric-value counter" data-target="10" data-suffix="+">0</span>
+                <span class="metric-label">Local Languages</span>
+                <p class="metric-sub">Projected</p>
+            </div>
+            <div class="metric-card">
+                <span class="metric-value counter" data-target="3" data-suffix="">0</span>
+                <span class="metric-label">Gov Partnerships</span>
+                <p class="metric-sub">Active</p>
+            </div>
+        </div>
+
+        <!-- Focus Areas -->
+        <h2 class="section-title" style="text-align: center; margin-bottom: var(--spacing-xl);">Focus Areas</h2>
+
+        <div class="focus-grid">
+            <div class="focus-card">
+                <span class="tag">Agri-Tech Vis</span>
+                <h3>Agriculture Advisory</h3>
+                <p>Planned: Real-time, localized crop disease diagnosis and weather advisory for smallholder farmers via
+                    SMS and WhatsApp integration, powered by Crane vision models.</p>
+            </div>
+
+            <div class="focus-card">
+                <span class="tag">Health-Tech Vis</span>
+                <h3>Health Triage & Education</h3>
+                <p>Planned: Assist community health workers with triage protocols and patient education materials
+                    translated instantly into local dialects.</p>
+            </div>
+
+            <div class="focus-card">
+                <span class="tag">Edu-Tech Vis</span>
+                <h3>Education & Language Preservation</h3>
+                <p>Planned: Digitizing rural school curriculum and preserving endangered cultural narratives through
+                    high-fidelity text-to-speech and translation.</p>
+            </div>
+
+            <div class="focus-card">
+                <span class="tag">Data Governance</span>
+                <h3>Governance & Sovereignty</h3>
+                <p>Ensuring that all data used for model training respects local ownership principles, community
+                    consent, and cultural context.</p>
+            </div>
+        </div>
+
+        <!-- Governance -->
+        <div class="governance-section">
+            <h2 class="section-title">Governance & Data Sovereignty</h2>
+            <p>All our initiatives respect local ownership and community consent, leveraging open government data where
+                possible.</p>
+
+            <ul class="governance-list">
+                <li>Data stays in Uganda/East Africa wherever possible.</li>
+                <li>Community-consented data collection.</li>
+                <li>Open collaboration with regulators.</li>
+            </ul>
+
+            <p style="margin-top: var(--spacing-md);">
+                Explore the <a href="https://uod.aistudio.ug/" target="_blank"
+                    style="color: var(--accent-cyan); text-decoration: none; font-weight: 600;">Uganda Open Data
+                    Platform</a> for datasets supporting these initiatives.
+            </p>
+        </div>
+
+    </main>
+
+    <footer class="page-footer">
+        <p>&copy; 2025 AI Studio Uganda. Sovereign AI for the Future.</p>
+    </footer>
+
+    <script src="/src/js/main.js"></script>
+    <script>
+        // Counter Animation Logic
+        const counters = document.querySelectorAll('.counter');
+
+        const animateCounters = () => {
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                const suffix = counter.getAttribute('data-suffix') || '';
+                const duration = 2000; // 2 seconds
+                const increment = target / (duration / 20);
+
+                let current = 0;
+
+                const updateCounter = () => {
+                    current += increment;
+                    if (current < target) {
+                        counter.innerText = Math.ceil(current).toLocaleString() + suffix;
+                        setTimeout(updateCounter, 20);
+                    } else {
+                        counter.innerText = target.toLocaleString() + suffix;
+                    }
+                };
+
+                updateCounter();
+            });
+        };
+
+        // Trigger animation when metrics are in view
+        const observerOptions = { threshold: 0.5 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        const metricsGrid = document.querySelector('.metrics-grid');
+        if (metricsGrid) observer.observe(metricsGrid);
+    </script>
+</body>
+
+</html>
